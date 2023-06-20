@@ -4,10 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server-core');
 
 var usersRouter = require('./routes/userRouter');
 const houserouter = require('./routes/houseRouter');
 const imagerouter = require('./routes/imagerouter');
+const companyrouter = require('./routes/companyinfoRouter');
+const aboutrouter = require('./routes/aboutRouter');
 // var usersRouter = require('./routes/users');
 
 var app = express();
@@ -25,16 +28,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', usersRouter);
 app.use('/house', houserouter);
 app.use('/images', imagerouter);
+app.use('/company', companyrouter);
+app.use('/about', aboutrouter);
 // app.use('/users', usersRouter);
 
 // conect to mongodb
-mongoose.set('strictQuery', false);
-mongoose
-  .connect(
-    'mongodb+srv://ajb1434:612681775@cluster0.bmydzw6.mongodb.net/betahouse'
-  )
-  .then(() => console.log('Connected DATABASE!'))
-  .catch((error) => console.log(error.message));
+const connectDB = async () => {
+  const createserver = await MongoMemoryServer.create();
+  await mongoose
+    .connect(createserver.getUri(), { dbName: 'betahouse' })
+    .then(() => console.log('Connected DATABASE!'))
+    .catch((error) => console.log(error.message));
+};
+connectDB();
+// mongoose.set('strictQuery', false);
+// mongoose
+//   .connect(
+//     'mongodb+srv://ajb1434:612681775@cluster0.bmydzw6.mongodb.net/betahouse'
+//   )
+//   .then(() => console.log('Connected DATABASE!'))
+//   .catch((error) => console.log(error.message));
 
 // 'mongodb+srv://ajb1434:CLK7IIRE7aDBBJUN@cluster0.bmydzw6.mongodb.net/betahouse'
 // mongoose

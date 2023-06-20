@@ -10,7 +10,7 @@ const { varifyToken } = require('../controllers/userctrl');
 const router = express.Router();
 
 // crud routes
-router.get('/', varifyToken, houseGETdata);
+router.get('/', houseGETdata);
 router.get('/:id', getById);
 router.post('/', housepostdata);
 router.put('/:id', houseputdata);
