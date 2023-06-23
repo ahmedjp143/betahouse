@@ -49,6 +49,7 @@ const connectDB = async () => {
     .catch((error) => console.log(error.message));
 };
 connectDB();
+
 // mongoose.set('strictQuery', false);
 // mongoose
 //   .connect(

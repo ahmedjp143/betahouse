@@ -29,7 +29,7 @@ const imagepostdata = async (req, res, next) => {
     if (error) return res.send(error.message);
 
     // validate id found or not found
-    const housedata = await housemodel.findOne({ _id: req.body.HouseID });
+    const housedata = await housemodel.findById(req.body.HouseID);
     if (!housedata)
       return res.send({ status: false, message: 'thid house not found' });
 

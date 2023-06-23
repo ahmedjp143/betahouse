@@ -68,62 +68,105 @@ describe('testing ourclient crud operations', function () {
     expect(Update.statusCode).toBe(200);
   });
 });
-
-// test house api
+// house and image blog
 describe('testing house api crud operations', function () {
-  it('get house data', async () => {
-    // let Id;
-    const resp = await request(app).get('/house');
-    expect(resp.statusCode).toBe(200);
-  });
-  it('insert house api', async () => {
-    const reqs = await request(app).post('/house').send({
-      typeHouse: 'apartment',
-      area: 'arjantin',
-      address: 'karaan',
-      rent: '250',
-      deposit: '250',
-      parking: 'false',
-      imagespriview:
-        'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-      isAvailable: 'true',
-      Rooms: 3,
-      toilets: '2',
-      MasterRoom: 1,
-      faafaahin: 'wuu iqanciyey',
-    });
-    expect(reqs.statusCode).toBe(201);
-    userId = reqs.body.housepost._id;
-    houseid = reqs.body.housepost._id;
-  });
-  it('get house by id', async () => {
-    // let Id;
-    const resp = await request(app).get(`/house/${userId}`);
-    expect(resp.statusCode).toBe(200);
-  });
-  it('update house', async () => {
-    const Update = await request(app).put(`/house/${userId}`).send({
-      typeHouse: 'apartment',
-      area: 'nasiibunde',
-      address: 'shipis',
-      rent: '250',
-      deposit: '250',
-      parking: 'false',
-      imagespriview:
-        'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-      isAvailable: 'true',
-      Rooms: 3,
-      toilets: '2',
-      MasterRoom: 1,
-      faafaahin: 'wuu iqanciyey',
-    });
+  let MyHomeId;
+  let idcheck;
 
-    expect(Update.statusCode).toBe(200);
+  // test house api
+  describe('testing house api crud operations', function () {
+    it('get house data', async () => {
+      // let Id;
+      const resp = await request(app).get('/house');
+      expect(resp.statusCode).toBe(200);
+    });
+    it('insert house api', async () => {
+      const reqs = await request(app).post('/house').send({
+        typeHouse: 'apartment',
+        area: 'arjantin',
+        address: 'karaan',
+        rent: '250',
+        deposit: '250',
+        parking: 'false',
+        imagespriview:
+          'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        isAvailable: 'true',
+        Rooms: 3,
+        toilets: '2',
+        MasterRoom: 1,
+        faafaahin: 'wuu iqanciyey',
+      });
+      expect(reqs.statusCode).toBe(201);
+      idcheck = reqs.body.housepost._id;
+      MyHomeId = reqs.body.housepost._id;
+      //   console.log('MyHomeId', MyHomeId);
+    });
+    it('get house by id', async () => {
+      // let Id;
+      const resp = await request(app).get(`/house/${idcheck}`);
+      expect(resp.statusCode).toBe(200);
+    });
+    it('update house', async () => {
+      const Update = await request(app).put(`/house/${idcheck}`).send({
+        typeHouse: 'apartment',
+        area: 'nasiibunde',
+        address: 'shipis',
+        rent: '250',
+        deposit: '250',
+        parking: 'false',
+        imagespriview:
+          'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+        isAvailable: 'true',
+        Rooms: 3,
+        toilets: '2',
+        MasterRoom: 1,
+        faafaahin: 'wuu iqanciyey',
+      });
+
+      expect(Update.statusCode).toBe(200);
+    });
+    it('delete house ', async () => {
+      const Delete = await request(app).delete(`/house/${idcheck}`);
+      expect(Delete.statusCode).toBe(200);
+    });
   });
-  it('delete house ', async () => {
-    const Delete = await request(app).delete(`/house/${userId}`);
-    expect(Delete.statusCode).toBe(200);
-  });
+
+  // test images schema wax yar cilad aya jirta
+  //   describe('testing image model crud operations', function () {
+  //     it('get image data', async () => {
+  //       // let Id;
+  //       const resp = await request(app).get('/images');
+  //       expect(resp.statusCode).toBe(200);
+  //     });
+  //     it('create image api', async () => {
+  //       const reqs = await request(app).post('/images').send({
+  //         HouseID: MyHomeId,
+  //         pathImage:
+  //           'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+  //       });
+  //       //   console.log('hh', reqs.body);
+  //       expect(reqs.statusCode).toBe(201);
+  //       userId = reqs.body.imagedata._id;
+  //     });
+  //     it('get image by id', async () => {
+  //       // let Id;
+  //       const resp = await request(app).get(`/images/${idcheck}`);
+  //       expect(resp.statusCode).toBe(200);
+  //     });
+  //     it('update image', async () => {
+  //       const Update = await request(app).put(`/images/${idcheck}`).send({
+  //         HouseID: MyHomeId,
+  //         pathImage:
+  //           'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+  //       });
+
+  //       expect(Update.statusCode).toBe(200);
+  //     });
+  //     it('delete image', async () => {
+  //       const Delete = await request(app).delete(`/images/${idcheck}`);
+  //       expect(Delete.statusCode).toBe(200);
+  //     });
+  //   });
 });
 
 // homesitting api test
@@ -260,41 +303,3 @@ describe('testing about api calls crud operations', function () {
     expect(resp.statusCode).toBe(200);
   });
 });
-
-// test images schema wax yar cilad aya jirta
-//  describe('testing image model crud operations', function () {
-//   it('get image data', async () => {
-//     // let Id;
-//     const resp = await request(app).get('/images');
-//     expect(resp.statusCode).toBe(200);
-//   });
-//     it('create image api', async () => {
-//       const reqs = await request(app).post('/images').send({
-//         HouseID: userId,
-//         pathImage:
-//           'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-//       });
-//       expect(reqs.statusCode).toBe(201);
-//       userId = reqs.body.imagedata._id;
-//     });
-//     it('get image by id', async () => {
-//       // let Id;
-//       const resp = await request(app).get(`/images/${userId}`);
-//       expect(resp.statusCode).toBe(200);
-//     });
-//     it('update image', async () => {
-//       const Update = await request(app).put(`/images/${userId}`).send({
-//         HouseID: userId,
-//         pathImage:
-//           'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-//       });
-
-//       expect(Update.statusCode).toBe(200);
-//     });
-//     it('delete image', async () => {
-//       const Delete = await request(app).delete(`/images/${userId}`);
-//       expect(Delete.statusCode).toBe(200);
-//     });
-// });
-
-// end
