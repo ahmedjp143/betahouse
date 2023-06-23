@@ -6,7 +6,8 @@ const imagegetdata = async (req, res, next) => {
     const getimage = await imagemodel.find();
     res.send(getimage);
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    res.status(400).send(error.message);
   }
 };
 // get by id
@@ -15,7 +16,8 @@ const getbyidimage = async (req, res, next) => {
     const getbyimage = await imagemodel.findById(req.params.id);
     res.send(getbyimage);
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    res.status(400).send(error.message);
   }
 };
 // post data to server
@@ -32,9 +34,10 @@ const imagepostdata = async (req, res, next) => {
 
     const imagedata = await imagemodel(req.body);
     await imagedata.save();
-    res.send({ status: true, message: 'successfully inserted' });
+    res.status(201).send({ status: true, message: 'successfully inserted' });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    res.status(400).send(error.message);
   }
 };
 
@@ -52,7 +55,7 @@ const updateDataimage = async (req, res) => {
     },
     { new: true }
   );
-  res.send({
+  res.status(200).send({
     status: true,
     message: 'succeesfully updata record',
   });
@@ -63,12 +66,13 @@ const deleteimage = async (req, res, next) => {
   try {
     let { id } = req.params;
     const deletedata = await imagemodel.findByIdAndDelete(id);
-    res.send({
+    res.status(200).send({
       status: true,
       message: 'succeesfully deleted record',
     });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    res.status(400).send(error.message);
   }
 };
 module.exports = {

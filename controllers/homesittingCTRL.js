@@ -1,11 +1,11 @@
 const {
-  Companyvalidation,
-  CompanyInfoModel,
-} = require('../models/companyinfomodel');
+  HomeSittingModel,
+  homesittingvalidation,
+} = require('../models/Homesittingmodel');
 // get data from company
-const getcompanyinfo = async (req, res, next) => {
+const gethomesittinginfo = async (req, res, next) => {
   try {
-    const getdata = await CompanyInfoModel.find();
+    const getdata = await HomeSittingModel.find();
     res.status(200).send(getdata);
   } catch (error) {
     res.status(400).send(error.message);
@@ -13,10 +13,10 @@ const getcompanyinfo = async (req, res, next) => {
 };
 
 // get by id
-const companygetoneinfo = async (req, res, next) => {
+const Homesittinggetoneinfo = async (req, res, next) => {
   try {
     let { id } = req.params;
-    const getbyid = await CompanyInfoModel.findById(id);
+    const getbyid = await HomeSittingModel.findById(id);
     res.status(200).send(getbyid);
   } catch (error) {
     res.status(400).send(error.message);
@@ -24,12 +24,12 @@ const companygetoneinfo = async (req, res, next) => {
 };
 // post data from server
 
-const companypostdata = async (req, res, next) => {
+const homesittingpostdata = async (req, res, next) => {
   try {
-    const { error } = Companyvalidation(req.body);
+    const { error } = homesittingvalidation(req.body);
     if (error) return res.status(400).send(error.message);
 
-    const postdata = await CompanyInfoModel(req.body);
+    const postdata = await HomeSittingModel(req.body);
     await postdata.save();
     res.status(200).send({
       status: true,
@@ -42,15 +42,16 @@ const companypostdata = async (req, res, next) => {
 
 // put or update company information
 
-const companyupdateinfo = async (req, res, next) => {
+const homesittingupdateinfo = async (req, res, next) => {
   try {
-    const { error } = Companyvalidation(req.body);
+    const { error } = homesittingvalidation(req.body);
     if (error) return res.status(400).send(error.message);
     let { id } = req.params;
 
-    const updatadata = await CompanyInfoModel.findByIdAndUpdate(
+    const updatadata = await HomeSittingModel.findByIdAndUpdate(
       id,
       {
+        Title: req.body.Title,
         name: req.body.name,
         location: req.body.location,
         logo: req.body.logo,
@@ -61,6 +62,10 @@ const companyupdateinfo = async (req, res, next) => {
         tiktok: req.body.tiktok,
         twitter: req.body.twitter,
         instagram: req.body.instagram,
+        HeroTitle: req.body.HeroTitle,
+        HeroDecribtion: req.body.HeroDecribtion,
+        heroImage: req.body.heroImage,
+        footerText: req.body.footerText,
       },
       {
         new: true,
@@ -77,8 +82,8 @@ const companyupdateinfo = async (req, res, next) => {
   }
 };
 module.exports = {
-  getcompanyinfo,
-  companypostdata,
-  companygetoneinfo,
-  companyupdateinfo,
+  gethomesittinginfo,
+  Homesittinggetoneinfo,
+  homesittingpostdata,
+  homesittingupdateinfo,
 };

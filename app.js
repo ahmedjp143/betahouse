@@ -9,8 +9,12 @@ const { MongoMemoryServer } = require('mongodb-memory-server-core');
 var usersRouter = require('./routes/userRouter');
 const houserouter = require('./routes/houseRouter');
 const imagerouter = require('./routes/imagerouter');
-const companyrouter = require('./routes/companyinfoRouter');
+const homesittingRouter = require('./routes/homesittingRouter');
 const aboutrouter = require('./routes/aboutRouter');
+const contactRouter = require('./routes/contactRouter');
+const galleryRouter = require('./routes/galleryRouter');
+const serviceRouter = require('./routes/serviceRouter');
+const ourclientRouter = require('./routes/ourclientRouter');
 // var usersRouter = require('./routes/users');
 
 var app = express();
@@ -28,8 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', usersRouter);
 app.use('/house', houserouter);
 app.use('/images', imagerouter);
-app.use('/company', companyrouter);
+app.use('/homesitting', homesittingRouter);
 app.use('/about', aboutrouter);
+app.use('/contact', contactRouter);
+app.use('/gallery', galleryRouter);
+app.use('/service', serviceRouter);
+app.use('/client', ourclientRouter);
 // app.use('/users', usersRouter);
 
 // conect to mongodb

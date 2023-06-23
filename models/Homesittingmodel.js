@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 let joi = require('joi');
-const companyInfoShema = new mongoose.Schema({
+const HomeSittingShema = new mongoose.Schema({
+  Title: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -41,13 +45,30 @@ const companyInfoShema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  HeroTitle: {
+    type: String,
+    required: true,
+  },
+  HeroDecribtion: {
+    type: String,
+    required: true,
+  },
+  heroImage: {
+    type: String,
+    required: true,
+  },
+  footerText: {
+    type: String,
+    required: true,
+  },
 });
 
-const CompanyInfoModel = mongoose.model('CompanyInfo', companyInfoShema);
+const HomeSittingModel = mongoose.model('HomeSitting', HomeSittingShema);
 
 // validation
-function Companyvalidation(comObj) {
+function homesittingvalidation(comObj) {
   let companyval = joi.object({
+    Title: joi.string().required(),
     name: joi.string().required(),
     location: joi.string().required(),
     logo: joi.string().required(),
@@ -58,11 +79,15 @@ function Companyvalidation(comObj) {
     tiktok: joi.string().required(),
     twitter: joi.string().required(),
     instagram: joi.string().required(),
+    HeroTitle: joi.string().required(),
+    HeroDecribtion: joi.string().required(),
+    heroImage: joi.string().required(),
+    footerText: joi.string().required(),
   });
   return companyval.validate(comObj);
 }
 
 module.exports = {
-  CompanyInfoModel,
-  Companyvalidation,
+  HomeSittingModel,
+  homesittingvalidation,
 };
