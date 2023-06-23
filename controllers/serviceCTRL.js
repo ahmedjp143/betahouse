@@ -31,6 +31,7 @@ const servicepost = async (req, res, next) => {
     await servicedata.save();
     res.status(201).send({
       status: true,
+      servicedata,
       message: 'successfully created service',
     });
   } catch (error) {

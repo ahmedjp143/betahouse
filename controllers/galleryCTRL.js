@@ -27,10 +27,11 @@ const gallerypost = async (req, res, next) => {
     const { error } = galleryvalidation(req.body);
     if (error) return res.status(400).send(error.message);
 
-    const clientdata = await galleryModel(req.body);
-    await clientdata.save();
+    const gallerydata = await galleryModel(req.body);
+    await gallerydata.save();
     res.status(201).send({
       status: true,
+      gallerydata,
       message: 'successfully created ',
     });
   } catch (error) {
@@ -54,6 +55,7 @@ const galleryupdate = async (req, res, next) => {
     await updatedata.save();
     res.status(200).send({
       status: true,
+      updatedata,
       message: 'successfully updated data',
     });
   } catch (error) {

@@ -31,8 +31,9 @@ const homesittingpostdata = async (req, res, next) => {
 
     const postdata = await HomeSittingModel(req.body);
     await postdata.save();
-    res.status(200).send({
+    res.status(201).send({
       status: true,
+      postdata,
       message: 'succefully created company information',
     });
   } catch (error) {

@@ -31,6 +31,7 @@ const clientpost = async (req, res, next) => {
     await clientdata.save();
     res.status(201).send({
       status: true,
+      clientdata,
       message: 'successfully created ',
     });
   } catch (error) {

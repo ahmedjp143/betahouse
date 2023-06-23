@@ -4,7 +4,7 @@ const { housemodel } = require('../models/houseModel');
 const imagegetdata = async (req, res, next) => {
   try {
     const getimage = await imagemodel.find();
-    res.send(getimage);
+    res.status(200).send(getimage);
   } catch (error) {
     // console.log(error.message);
     res.status(400).send(error.message);
@@ -14,7 +14,8 @@ const imagegetdata = async (req, res, next) => {
 const getbyidimage = async (req, res, next) => {
   try {
     const getbyimage = await imagemodel.findById(req.params.id);
-    res.send(getbyimage);
+    if (!getbyimage) return res.status(404).send({ message: 'No such image' });
+    res.status(200).send(getbyimage);
   } catch (error) {
     // console.log(error.message);
     res.status(400).send(error.message);
@@ -34,7 +35,9 @@ const imagepostdata = async (req, res, next) => {
 
     const imagedata = await imagemodel(req.body);
     await imagedata.save();
-    res.status(201).send({ status: true, message: 'successfully inserted' });
+    res
+      .status(201)
+      .send({ status: true, imagedata, message: 'successfully inserted' });
   } catch (error) {
     // console.log(error.message);
     res.status(400).send(error.message);

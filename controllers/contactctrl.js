@@ -30,6 +30,7 @@ const postcontactdata = async (req, res, next) => {
     await contactdata.save();
     res.status(201).send({
       status: true,
+      contactdata,
       message: 'Contact data saved successfully',
     });
   } catch (error) {
