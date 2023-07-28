@@ -3,8 +3,8 @@ const { housemodel } = require('../models/houseModel');
 // get all images information
 const imagegetdata = async (req, res, next) => {
   try {
-    const getimage = await imagemodel.find();
-    res.status(200).send(getimage);
+    const getimages = await imagemodel.find();
+    res.status(200).send(getimages);
   } catch (error) {
     // console.log(error.message);
     res.status(400).send(error.message);

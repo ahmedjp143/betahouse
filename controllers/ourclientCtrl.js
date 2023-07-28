@@ -61,9 +61,24 @@ const clientupdate = async (req, res, next) => {
     res.status(400).send(error.message);
   }
 };
+// delete data
+const deleteDataclient = async (req, res, next) => {
+  try {
+    let { id } = req.params;
+
+    const deletedataget = await clientModel.findByIdAndDelete(id);
+    res.status(200).send({
+      status: true,
+      message: 'succeesfully deleted record',
+    });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 module.exports = {
   clientgetdata,
   clientgetbyid,
   clientpost,
   clientupdate,
+  deleteDataclient,
 };
