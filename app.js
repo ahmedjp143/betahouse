@@ -71,7 +71,7 @@ mongoose
 
 // catch 404 and forward to error handler
 app.get('/', (req, res) => {
-  res.json('succes');
+  res.json('succesffully');
 });
 
 const port = process.env.PORT;
