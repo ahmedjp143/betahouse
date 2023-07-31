@@ -70,7 +70,7 @@ mongoose
 //   .catch((err) => console.log(err));
 
 // catch 404 and forward to error handler
-app.use('/', (req, res, next) => {
+app.use('/', (req, res) => {
   res.send('hello beta house Api');
 });
 
