@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', usersRouter);
+app.use('/users', usersRouter);
 app.use('/house', houserouter);
 app.use('/images', imagerouter);
 app.use('/homesitting', homesittingRouter);
@@ -70,8 +70,8 @@ mongoose
 //   .catch((err) => console.log(err));
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+app.use('/', (req, res, next) => {
+  res.send('hello beta house Api');
 });
 
 const port = process.env.PORT;
