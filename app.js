@@ -31,6 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => {
+  res.json('hi wolrd');
+});
 
 app.use('/users', usersRouter);
 app.use('/house', houserouter);
@@ -42,9 +45,6 @@ app.use('/gallery', galleryRouter);
 app.use('/service', serviceRouter);
 app.use('/client', ourclientRouter);
 
-app.get('/', (req, res) => {
-  res.send('wuu shaqeenaa api house');
-});
 // app.use('/users', usersRouter);
 
 // conect to mongodb
