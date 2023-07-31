@@ -62,7 +62,7 @@ mongoose
   .connect(
     'mongodb+srv://ajb1434:612681775@cluster0.bmydzw6.mongodb.net/betahouse'
   )
-  .then(() => console.log('Connected DATABASE!'))
+  .then(() => console.log('Connected DATABASE database!'))
   .catch((error) => console.log(error.message));
 
 // 'mongodb+srv://ajb1434:CLK7IIRE7aDBBJUN@cluster0.bmydzw6.mongodb.net/betahouse'
