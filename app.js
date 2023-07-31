@@ -70,8 +70,8 @@ mongoose
 //   .catch((err) => console.log(err));
 
 // catch 404 and forward to error handler
-app.use('/', (req, res) => {
-  res.send('hello beta house Api');
+app.get('/', (req, res) => {
+  res.json('succes');
 });
 
 const port = process.env.PORT;
