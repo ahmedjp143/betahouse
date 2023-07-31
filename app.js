@@ -43,7 +43,7 @@ app.use('/service', serviceRouter);
 app.use('/client', ourclientRouter);
 
 app.get('/', (req, res) => {
-  res.send('wuu shaqeenaa');
+  res.send('wuu shaqeenaa api betahouse');
 });
 // app.use('/users', usersRouter);
 
