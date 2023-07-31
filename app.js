@@ -41,6 +41,10 @@ app.use('/contact', contactRouter);
 app.use('/gallery', galleryRouter);
 app.use('/service', serviceRouter);
 app.use('/client', ourclientRouter);
+
+app.get('/', (req, res) => {
+  res.send('wuu shaqeenaa');
+});
 // app.use('/users', usersRouter);
 
 // conect to mongodb
@@ -70,9 +74,6 @@ mongoose
 //   .catch((err) => console.log(err));
 
 // catch 404 and forward to error handler
-app.get('/', (req, res) => {
-  res.json('succesffully');
-});
 
 const port = process.env.PORT;
 app.listen(port);
