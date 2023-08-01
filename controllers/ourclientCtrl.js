@@ -52,7 +52,7 @@ const clientupdate = async (req, res, next) => {
       },
       { new: true }
     );
-    await updatedata.save();
+    // await updatedata.save();
     res.status(200).send({
       status: true,
       message: 'successfully updated data',
